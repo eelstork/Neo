@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369737b0226364a5899fa8439a2bf408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPlayersToMatch: 3
+  minUsersToMatch: 2
   state: 0
 --- !u!114 &114219965888803576
 MonoBehaviour:
