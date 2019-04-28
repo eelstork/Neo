@@ -26,8 +26,18 @@ public class ChatInput : MonoBehaviour{
 	            var skin = str.Substring(1);
 	            GameObject.FindObjectOfType<SkinLoader>().ApplySkin(skin);
 	        }else{
-				Connection.localPlayer.transform.Req<A1.Tell>().Invoke(
+				bool accepted = false;
+				try{
+					accepted =
+						Connection.localPlayer.transform.Get<TBC>().Submit(
+						str.Split(' '));
+				}catch(System.Exception ex){
+					Debug.LogWarning("While processing command: " + ex);
+				}
+				if(!accepted){
+					Connection.localPlayer.transform.Req<A1.Tell>().Invoke(
 					UserName.name, str);
+				}
 			}
 		}
 

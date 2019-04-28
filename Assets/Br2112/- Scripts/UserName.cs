@@ -8,16 +8,25 @@ public class UserName : MonoBehaviour{
 
 	void Start(){
 	    name = PlayerPrefs.GetString(USER_NAME);
-		panel.SetActive(name.Length == 0);
+		inputField.text = name;
+		InvokeRepeating("SetUserName", 5, 5);
 	}
 
-	public void SET_USERNAME(){
-		var s = this.Find<InputField>("[Name input field]").text.Trim();
+	public void SetUserName(){
+		var s = inputField.text.Trim();
 		if (s.Length <= 0) return;
 		PlayerPrefs.SetString(USER_NAME, s);
 		PlayerPrefs.Save();
 		name = s;
-		panel.SetActive(false);
+		//panel.SetActive(false);
+	}
+
+	public static string value{get{
+		return FindObjectOfType<UserName>().inputField.text;
+	}}
+
+	InputField inputField{
+		get{ return this.Find<InputField>("[Name input field]"); }
 	}
 
 }

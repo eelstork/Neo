@@ -22,7 +22,9 @@ public class ActionContext : MonoBehaviour {
     public Transform other { get{ return this.Closest<Avatar>(); }}
 
     public Transform that { get{
-        var x = this.Closest<Rigidbody>( e => (e.mass < body.mass*0.5f) );
+        var x = this.Closest<PhotonView>(
+            e => (e.Get<Rigidbody>().mass < body.mass*0.5f) );
+        print("That: "+x.gameObject.name);
         if(!x) throw new Invalid("Nothing nearby");
         return x;
     }}

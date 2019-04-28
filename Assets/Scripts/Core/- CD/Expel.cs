@@ -7,6 +7,7 @@ namespace A1{ public class Expel : Ability {
 	[Header("Metabolism")]
 	[Range(0f, 1f)] public float conversion = 0.2f;
 	public string output;
+	public float force = 10;
 	[Header("Cosmetic")]
 	public Color taint = Color.black;
 	[Range(0f, 1f)] public float tainting = 0.35f;
@@ -24,9 +25,10 @@ namespace A1{ public class Expel : Ability {
 		  case 1: child.position = outlets[0].transform.position;        break;
 		  default: Debug.LogWarning("Mult. outlets " + gameObject.name); break;
 		}
-		if(output.Length>0) child.gameObject.name = output;
+		if(output!=null && output.Length>0) child.gameObject.name = output;
 		child.SetParent(null);
 		child.gameObject.SetActive(true);
+		child.Get<Rigidbody>().AddForce(transform.forward, ForceMode.Impulse);
 		Enabler.Enable(child);
 		child.Taint(taint, tainting);
 		this.GainMass(child, conversion);

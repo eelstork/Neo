@@ -9,12 +9,17 @@ public class UserState: MonoBehaviour {
 
 	public int minUsersToMatch = 3;
 	public State state = State.ENTERING;
+	public string playerName;
 	[Header("Debug")]
 	public int _playersLeft;
 
 	// ------------------------------------------------------------------------
 
 	public void RPC(string msg){ proxy.RPC(msg, RpcTarget.All); }
+
+	public void RPC(string msg, string str){
+		proxy.RPC(msg, RpcTarget.All, str);
+	}
 
 	// ------------------------------------------------------------------------
 
@@ -45,7 +50,7 @@ public class UserState: MonoBehaviour {
 				if(KO)  RPC("Lose");
 				if(playersLeft==1) {
 					print("I am the winner");
-					RPC("Win");
+					RPC("Win", UserName.value);
 				}
 				break;
 			case State.GHOST:
@@ -59,11 +64,20 @@ public class UserState: MonoBehaviour {
 
 	// ------------------------------------------------------------------------
 
-	[RPC] void EnterSpectate () { state = State.SPECTATE; }
-	[RPC] void EnterMatch    () { state = State.MATCHING; }
-	[RPC] void EnterIdle	 () { state = State.IDLE; }
-	[RPC] void Lose			 () { state = State.GHOST; }
-	[RPC] void Win 			 () { state = State.WIN; Invoke("EndMatch", 3); }
+	[RPC] void EnterSpectate(){ state = State.SPECTATE; }
+
+	[RPC] void EnterMatch(){
+		state = State.MATCHING; this.Get<HP>().Reset();
+	}
+
+	[RPC] void EnterIdle(){ state = State.IDLE; }
+
+	[RPC] void Lose(){ state = State.GHOST; this.Get<HP>().Reset(); }
+
+	[RPC] void Win(string name) {
+		playerName = name;
+		state = State.WIN; Invoke("EndMatch", 3);
+	}
 
 	// ------------------------------------------------------------------------
 
@@ -89,7 +103,7 @@ public class UserState: MonoBehaviour {
 			var players = FindObjectsOfType<UserState>();
 			foreach(var k in players){
 				if(k.state==State.WIN){
-					return k.ToString();
+					return k.playerName;
 				}
 			}
 			return null;

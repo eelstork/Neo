@@ -5,7 +5,6 @@ using N = Notifications;
 namespace A1{ public class Ingest : Ability {
 
 	public Transform target;
-    public float threshold = 1;
 
 	public void Invoke(Transform x){
 		target = Req(x);
@@ -15,6 +14,7 @@ namespace A1{ public class Ingest : Ability {
 	void Update(){ ReachRPC(target, "DoIngest", target.Id()); }
 
 	[RPC] public void DoIngest(int id){
+		print("do ingest");
 		target = id.Transform();
 		target.SetParent(transform);
 		target.localPosition = Vector3.zero;
@@ -22,6 +22,7 @@ namespace A1{ public class Ingest : Ability {
 		proxy.Own(id);
 		Notify(N.OnIngest, target);
 		target = null;
+		print("ingested");
 	}
 
 }}

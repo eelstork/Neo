@@ -9,15 +9,15 @@ public class Rotor : Governor, IRotor {
 
 	void Awake(){
 		if(speed==0)    speed    = 10;
-		if(traction==0) traction = 200;
-		if(strength==0) strength = 2000;
+		if(traction==0) traction = 20;
+		if(strength==0) strength = 50;
 	}
 
 	void FixedUpdate(){
 		var Δ = Vector3.Cross(T.forward, targetDirection)*speed
 		        - body.angularVelocity;
 	    // TODO: multiply by Δt is wrong here.
-		body.AddTorque(Clamp(Δ)*body.mass*traction*Δt);
+		body.AddTorque(Clamp(Δ)*body.mass*traction);
 	}
 
 	Vector3 targetDirection{

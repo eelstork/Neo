@@ -9,14 +9,14 @@ public class ActorController2 : MonoBehaviour {
 	[Header("Info")]
 	public string message;
 
-	// look-at, push, reach, tell and gesture not used here
-	void Update(){
-		if(dm.Will("Transfer"))
+	public bool Command(string cmd){
+		if(cmd=="transfer")
 			Try(() => this.Req<Give>().Invoke(cx.hand,cx.other));
-		if(dm.Will("Ingest")) Try(() => this.Req<Ingest>().Invoke(cx.that));
-		if(dm.Will("Expel"))  Try(() => this.Req<Expel>().Invoke(cx.content));
-		if(dm.Will("Grab"))   Try(() => this.Req<Grab>().Invoke(cx.that));
-		if(dm.Will("Jump"))   Try(() => this.Req<Jump>().Invoke(Vector3.up));
+		else if(cmd=="ingest") Try(() => this.Req<Ingest>().Invoke(cx.that));
+		else if(cmd=="expel")  Try(() => this.Req<Expel>().Invoke(cx.content));
+		else if(cmd=="grab")   Try(() => this.Req<Grab>().Invoke(cx.that));
+		else return false;
+		return true;
 	}
 
 	void Try(Action act){

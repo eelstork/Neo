@@ -14,7 +14,8 @@ namespace A1 { public class Ability : MonoBehaviour {
 	RPCParams rpc;
 	Action postAction;
 
-	float maxAngle = 10;
+	public float reachFactor = 0.5f;
+	//float maxAngle = 10;
 	[Header("Debug")]
 	public bool pauseWhenDone = false;
 
@@ -107,14 +108,13 @@ namespace A1 { public class Ability : MonoBehaviour {
 	// PRIVATE ----------------------------------------------------------------
 
 	void Timeout(){
-		//ebug.LogError("Cancel activity: " + this.GetType().Name);
 		if(postAction!=null) postAction(); this.enabled = false;
 	}
 
 	void OnDisable(){ rpc = null; CancelInvoke(); postAction = null; }
 
 	bool ReadyToActOn(Target target){
-		return Dist(target)<=reach && this.Angle(target)<=maxAngle;
+		return Dist(target)<=reach; // && this.Angle(target)<=maxAngle;
 	}
 
 	void SendRPC(){
@@ -135,7 +135,7 @@ namespace A1 { public class Ability : MonoBehaviour {
 
 	AgentStatus status{ get{ return Req<AgentStatus>(); }}
 
-	float reach{ get{ return collider.bounds.size.x*0.25f; }}
+	float reach{ get{ return collider.bounds.size.x*reachFactor; }}
 
 	// ------------------------------------------------------------------------
 
