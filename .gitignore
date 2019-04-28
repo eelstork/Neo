@@ -1,0 +1,13 @@
+Library
+Temp
+Assembly-CSharp.csproj
+Assembly-CSharp-firstpass.csproj
+Assembly-CSharp-Editor-firstpass.csproj
+Logs/IncrementalCompiler
+obj
+*.sln
+*.userprefs
+*.csproj
+*.blend1
+.idea
+NeoCD.sln.DotSettings.user
