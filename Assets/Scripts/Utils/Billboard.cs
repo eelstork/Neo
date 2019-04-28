@@ -23,6 +23,7 @@ public class Billboard : MonoBehaviour {
 	}
 
 	public void Display(string message){
+		//rint(message);
 		var text = GetComponentInChildren<Text>();
 		text.text = message;
 		canvas.enabled = true;

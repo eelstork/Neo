@@ -120,7 +120,6 @@ GameObject:
   - component: {fileID: 114595134448299352}
   - component: {fileID: 114822850051194012}
   - component: {fileID: 114490695609953720}
-  - component: {fileID: 114504505755249596}
   - component: {fileID: 114980219488570986}
   - component: {fileID: 114382173809052636}
   - component: {fileID: 114934054493452552}
@@ -129,6 +128,7 @@ GameObject:
   - component: {fileID: 114098401564168706}
   - component: {fileID: 114854911976510384}
   - component: {fileID: 114072963883104612}
+  - component: {fileID: 114210483806897606}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -166,7 +166,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 655da9fa4d1ff4435918a274bf555d30, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -357,6 +357,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: HELLO
+--- !u!114 &114210483806897606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1954538105539504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369737b0226364a5899fa8439a2bf408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPlayersToMatch: 3
+  state: 0
 --- !u!114 &114219965888803576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -419,7 +432,7 @@ MonoBehaviour:
     m_MaxSize: 64
     m_Alignment: 4
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
@@ -484,21 +497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a9b634dfa10467f8f90a3d578f05aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114504505755249596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1954538105539504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56f81b3be477c4d94afa6c4e125653ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stamina: 1
-  recoveryRate: 0.2
-  jumpForce: 10
-  traction: 50
 --- !u!114 &114568964189532000
 MonoBehaviour:
   m_ObjectHideFlags: 1
