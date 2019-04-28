@@ -11,3 +11,5 @@ obj
 *.blend1
 .idea
 NeoCD.sln.DotSettings.user
+Assets/Packages/Photon
+Photon.meta
