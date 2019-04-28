@@ -5,6 +5,7 @@ public class ChatInput : MonoBehaviour{
 
 	public GameObject chatInput;
 	public InputField field;
+	public bool alwaysVisible = true;
 
 	void Start(){
 		field.onEndEdit.AddListener(delegate{ OnSubmit(); });
@@ -52,7 +53,7 @@ public class ChatInput : MonoBehaviour{
 	bool editing{
 		get{ return chatInput.activeInHierarchy; }
 		set{
-			chatInput.SetActive(value);
+			chatInput.SetActive(value || alwaysVisible);
 			if(value)field.ActivateInputField();
 			else field.DeactivateInputField();
 			var c = FindObjectOfType<A1.ActorController2>();

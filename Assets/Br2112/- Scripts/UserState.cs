@@ -57,7 +57,7 @@ public class UserState: MonoBehaviour {
 			 	if(matchOver) RPC("EnterIdle");
 				break;
 		}
-		GetComponentInChildren<Billboard>().Display(state.ToString());
+		//GetComponentInChildren<Billboard>().Display(state.ToString());
 	}
 
 	void EndMatch(){ RPC("EnterIdle"); }
