@@ -11,11 +11,9 @@ public class ArmorScaler : MonoBehaviour {
 	void Update () {
 		//if(GetComponentInParent<PhotonView>().IsMine) return;
 		var state = GetComponentInParent<UserState>().state;
-		var w = 1f;
-		if(state==UserState.State.IDLE || state==UserState.State.SPECTATE
-		                               || state==UserState.State.GHOST
-									   || state==UserState.State.WIN){
-			w = 0.1f;
+		var w = 0.1f;
+		if(state==UserState.State.MATCHING){
+			w = 1f;
 		}
 		t = t*0.9f + w*0.1f;
 		var factor = Mathf.Lerp(0.1f, 1f, t);

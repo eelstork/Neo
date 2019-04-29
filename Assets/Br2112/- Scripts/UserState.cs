@@ -4,12 +4,12 @@ using Photon.Realtime;
 using Photon.Pun;
 using RPC = Photon.Pun.PunRPC;
 
-public class UserState: MonoBehaviour {
+public class UserState: MonoBehaviourPunCallbacks {
 
-	public enum State{ ENTERING, SPECTATE, IDLE, MATCHING, WIN, GHOST }
+	public enum State{ UNKNOWN, ENTERING, SPECTATE, IDLE, MATCHING, WIN, GHOST }
 	public float spawnRadius = 20;
 	public int minUsersToMatch = 3;
-	public State state = State.ENTERING;
+	public State state = State.UNKNOWN;
 	public string playerName;
 	[Header("Debug")]
 	public int _playersLeft;
@@ -29,23 +29,49 @@ public class UserState: MonoBehaviour {
 	// ------------------------------------------------------------------------
 
 	void Start(){
-		if(playersLeft>0) RPC("EnterSpectate");
-		else RPC("EnterIdle");
+		if(!proxy.IsMine) return;
+		RPC("Enter");
 		InvokeRepeating("DoUpdate", 1, 1);
+	}
+
+	void SelectInitialState(){
+		if(playersUnknown>0){
+			print("SOME PLAYERS HAVE UNKNOWN STATUS, WAIT");
+			state = State.ENTERING;
+			return;
+		}
+		if(playersLeft>0){
+			print("SOME PLAYERS ARE HAVING A MATCH; SPECTATE");
+			RPC("EnterSpectate");
+			OnSpectate();
+		}else{
+			print("NO MATCH STARTED, LET'S IDLE");
+			RPC("EnterIdle");
+		}
 	}
 
 	void Update(){
 		_playersLeft = playersLeft;
 	}
 
+	override public void OnPlayerEnteredRoom(Player player){
+		proxy.RPC("StateUpdate", player, (int)state);
+	}
+
 	void DoUpdate(){
 		if(!proxy.IsMine) return;
 		UpdateUI();
+		UpdateName();
 		if(winner!=null) return;
 		switch(state){
 			case State.ENTERING:
-				Debug.LogError("Should not be here"); break;
+				SelectInitialState();
+				return;
 			case State.IDLE:
+				if(usersEntering>0 || playersUnknown>0){
+					print("Some have entering state; stick to idle for now");
+					return;
+				}
 				if(userCount>=minUsersToMatch) RPC("EnterMatch");
 				break;
 			case State.SPECTATE:
@@ -67,6 +93,13 @@ public class UserState: MonoBehaviour {
 		//GetComponentInChildren<Billboard>().Display(state.ToString());
 	}
 
+	void UpdateName(){
+		var x = UserName.value;
+		if(x!=playerName){
+			RPC("NameTag", x);
+		}
+	}
+
 	void UpdateUI(){
 		var ui = this.Find<Text>("Match Status Text");
 		string n;
@@ -83,6 +116,15 @@ public class UserState: MonoBehaviour {
 	void EndMatch(){ RPC("EnterIdle"); }
 
 	// ------------------------------------------------------------------------
+
+	[RPC] void Enter(){
+		state = State.ENTERING;
+	}
+
+	[RPC] void StateUpdate(int s){
+		print("GOT STATE UPDATE: "+s+" - "+ (State)s);
+		state = (State)s;
+	}
 
 	[RPC] void EnterSpectate(){
 		state = State.SPECTATE;
@@ -113,10 +155,15 @@ public class UserState: MonoBehaviour {
 		state = State.WIN; Invoke("EndMatch", 3);
 	}
 
+	[RPC] void NameTag(string name) {
+		playerName = name;
+		GetComponentInChildren<NameTag>().Set(name);
+	}
+
 	void Steer(bool flag, string reason){
 		print("Enable steer: "+flag+" - "+reason);
-		steer.enabled = flag;
-		stabilizer.enabled = !flag;
+		if(steer) steer.enabled = flag;
+		if(stabilizer) stabilizer.enabled = !flag;
 	}
 
 	// ------------------------------------------------------------------------
@@ -133,9 +180,21 @@ public class UserState: MonoBehaviour {
 		return n;
 	}}
 
+	int playersUnknown{ get{
+		int n=0;
+		foreach(var x in all){ if(x.state==State.UNKNOWN) n++; }
+		return n;
+	}}
+
 	int spectators{ get{
 		int n=0;
 		foreach(var x in all){ if(x.state==State.SPECTATE) n++; }
+		return n;
+	}}
+
+	int usersEntering{ get{
+		int n=0;
+		foreach(var x in all){ if(x.state==State.ENTERING) n++; }
 		return n;
 	}}
 
@@ -148,6 +207,19 @@ public class UserState: MonoBehaviour {
 	int         userCount { get{ return all.Length;     				}}
 	bool        matchOver { get{ return playersLeft==0; 				}}
 	bool        KO        { get{ return this.Get<HP>().value<=0;        }}
+
+	void OnSpectate(){
+		spectateNotice.transform.localScale = Vector3.one;
+		Invoke("StopSpectNote", 5);
+	}
+
+	void StopSpectNote(){
+		spectateNotice.transform.localScale = Vector3.zero;
+	}
+
+	GameObject spectateNotice{
+		get{ return GameObject.Find("Spectator Notice"); }
+	}
 
 	PhotonView  proxy     { get{ return PhotonView.Get(this); 	 		}}
 	UserState[] all       { get{ return FindObjectsOfType<UserState>(); }}
