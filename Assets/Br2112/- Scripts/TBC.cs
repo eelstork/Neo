@@ -14,6 +14,8 @@ public class TBC : MonoBehaviour {
 		print(string.Join("-", words));
 		string cmd = words[0];
 		if(cmd=="move") return Move(words[1]);
+		if(cmd=="cam") return Cam(words[1]);
+		if(cmd=="zoom") return Zoom(words[1]);
 		if(cmd=="sneak") return Sneak(words[1]);
 		if(cmd=="strafe") return Strafe(words[1]);
 		if(cmd=="rotate") return Rotate(words[1]);
@@ -60,6 +62,31 @@ public class TBC : MonoBehaviour {
 		var angle = int.Parse(x);
 		precise.RotateByAngle(angle);
 		Cost(angle/2);
+		return true;
+	}
+
+	bool Zoom(string x){
+		print("Zoom");
+		var s = float.Parse(x);
+		var q = 1/s;
+		var price = (int)(q*4);
+		if(price>credit){
+			Debug.LogWarning("Zoom by " + x + " is too expensive: "
+							 + price + ">" + credit);
+			return false;
+		}
+		cam.Zoom(q);
+		Cost(price);
+		return true;
+	}
+
+	bool Cam(string x){
+		print("Cam");
+		if(x=="down")  return cam.RotateX(-20);
+		if(x=="up")    cam.RotateX( 20);
+		if(x=="left")  cam.RotateY(-30);
+		if(x=="right") cam.RotateY( 30);
+		Cost(1);
 		return true;
 	}
 
@@ -130,13 +157,16 @@ public class TBC : MonoBehaviour {
 		return allowed;
 	}}
 
+	int credit{get{ return this.Get<HP>().value; }}
+
 	void Cost(int n){ this.Get<HP>().Pay(n); }
 
 	void Halve(){ this.Get<HP>().Div(2); }
 
-	Weapon weapon{get{ return this.Req<Weapon>(); }}
-	Precise precise{get{ return this.Req<Precise>(); }}
-	Transform T{get{ return transform; }}
+	ThirdPersonCam cam{ get{ return Camera.main.Get<ThirdPersonCam>(); }}
+	Weapon weapon{ get{ return this.Req<Weapon>(); }}
+	Precise precise{ get{ return this.Req<Precise>(); }}
+	Transform T{ get{ return transform; }}
 	Rigidbody body{ get{ return this.Req<Rigidbody>(); }}
 
 }

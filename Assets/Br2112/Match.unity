@@ -1040,6 +1040,7 @@ GameObject:
   - component: {fileID: 544020276}
   - component: {fileID: 544020280}
   - component: {fileID: 544020279}
+  - component: {fileID: 544020281}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1113,7 +1114,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544020275}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 510ae8a82547441caac82b2c0142ea31, type: 3}
   m_Name: 
@@ -1160,6 +1161,21 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
+--- !u!114 &544020281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 544020275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2072ac2d9cabd442583c3852a3fd96b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 2, z: 8}
+  minDist: 2
+  maxDist: 50
 --- !u!1001 &798463626
 Prefab:
   m_ObjectHideFlags: 0
