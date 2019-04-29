@@ -22,6 +22,7 @@ public class TBC : MonoBehaviour {
 		if(cmd=="jump") return Jump();
 		if(cmd=="dig") return Dig();
 		if(cmd=="respawn") return Respawn();
+		if(cmd=="stabilizer") return Stabilize(words[1]);
 		return false;
 		//return this.Get<A1.ActorController2>().Command(cmd);
 	}
@@ -62,6 +63,16 @@ public class TBC : MonoBehaviour {
 		print("Strafe");
 		if(x=="left") precise.Move(-T.right/2);
 		if(x=="right") precise.Move(T.right/2);
+		Cost(1);
+		return true;
+	}
+
+	bool Stabilize(string x){
+		print("Stabilize");
+		var s = this.Get<Stabilizer>();
+		if(!s) return;
+		if(x=="on") s.enabled = true;
+		if(x=="off") s.enabled = false;
 		Cost(1);
 		return true;
 	}
