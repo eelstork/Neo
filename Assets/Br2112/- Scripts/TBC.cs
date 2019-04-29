@@ -70,7 +70,7 @@ public class TBC : MonoBehaviour {
 	bool Stabilize(string x){
 		print("Stabilize");
 		var s = this.Get<Stabilizer>();
-		if(!s) return;
+		if(!s) return true;
 		if(x=="on") s.enabled = true;
 		if(x=="off") s.enabled = false;
 		Cost(1);

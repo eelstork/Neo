@@ -23,9 +23,8 @@ public class HP : MonoBehaviour {
 	void OnCollisionEnter(Collision c){
 		if(!PhotonView.Get(this).IsMine) return;
 		var reason = c.collider.gameObject.name;
-		print("Collided with "+reason);
 		if(reason.StartsWith("Ammo")){
-			print("Subtract HP");
+			//rint("Subtract HP");
 			value -= 25;
 		}
 	}

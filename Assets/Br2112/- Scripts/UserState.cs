@@ -36,7 +36,7 @@ public class UserState: MonoBehaviour {
 	}
 
 	void DoUpdate(){
-		if(!PhotonView.Get(this).IsMine) return;
+		if(!proxy.IsMine) return;
 		if(winner!=null) return;
 		switch(state){
 			case State.ENTERING:
@@ -77,7 +77,7 @@ public class UserState: MonoBehaviour {
 		steer.enabled = false;
 		if(stabilizer)stabilizer.enabled = true;
 		this.Get<HP>().Reset();
-		Camera.main.gameObject.AddComponent<FogSplash>();
+		if(proxy.IsMine) Camera.main.gameObject.AddComponent<FogSplash>();
 		this.transform.position = Arena.GenPos();
 	}
 

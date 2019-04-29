@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   angle: 15
-  distance: 2
+  distance: 20
   height: 0
 --- !u!114 &544020280
 MonoBehaviour:
