@@ -6,7 +6,8 @@ public class ControlsUI : MonoBehaviour {
     public float D = 2;
 
 	string[] controls = {
-        "OPERATION - [move/sneak forward/back] [rotate/strafe left/right] [jump/dig] [shoot] [respawn]"
+        "OPERATION - [move/sneak forward/back] [rotate/strafe left/right] "+
+        "[nudge N/-N] [jump/dig] [shoot] [respawn]"
 	};
 
     string[] puns = {
@@ -14,7 +15,7 @@ public class ControlsUI : MonoBehaviour {
         "WEATHER BULLETIN: The air is slightly polluted (AQI 7165)",
         "CENTRAL COMMAND: RECYCLE",
         "HYDROPONICS: Biomatter shortage detected",
-        "Now playing: The End is nigh, the end is near 🎵",
+        "Now playing: The end is nigh, the end is near",
     };
 
     void Start(){ StatusUpdate(); }

@@ -12,8 +12,9 @@ public class ArmorScaler : MonoBehaviour {
 		//if(GetComponentInParent<PhotonView>().IsMine) return;
 		var state = GetComponentInParent<UserState>().state;
 		var w = 1f;
-		if(state==UserState.State.IDLE
-		|| state==UserState.State.SPECTATE || state==UserState.State.GHOST){
+		if(state==UserState.State.IDLE || state==UserState.State.SPECTATE
+		                               || state==UserState.State.GHOST
+									   || state==UserState.State.WIN){
 			w = 0.1f;
 		}
 		t = t*0.9f + w*0.1f;

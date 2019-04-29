@@ -12,6 +12,7 @@ public class MatchUI : MonoBehaviour {
 			ui.SetActive(false);
 		}else{
 			ui.SetActive(true);
+			if(s==null || s.Length==0)s="UNKNOWN USER";
 			text.text = s + " is POPULATION ONE";
 		}
 	}

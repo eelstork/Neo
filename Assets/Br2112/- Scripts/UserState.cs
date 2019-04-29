@@ -75,7 +75,7 @@ public class UserState: MonoBehaviour {
 	[RPC] void EnterMatch(){
 		state = State.MATCHING;
 		steer.enabled = false;
-		stabilizer.enabled = true;
+		if(stabilizer)stabilizer.enabled = true;
 		this.Get<HP>().Reset();
 		Camera.main.gameObject.AddComponent<FogSplash>();
 		this.transform.position = Arena.GenPos();
