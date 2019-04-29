@@ -23,7 +23,7 @@ public class TBC : MonoBehaviour {
 		if(cmd=="shoot") return Shoot();
 		if(cmd=="jump") return Jump();
 		if(cmd=="dig") return Dig();
-		if(cmd=="respawn") return Respawn();
+		if(cmd=="teleport") return Respawn();
 		if(cmd=="stabilizer") return Stabilize(words[1]);
 		return false;
 		//return this.Get<A1.ActorController2>().Command(cmd);

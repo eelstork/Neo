@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
 using RPC = Photon.Pun.PunRPC;
@@ -33,14 +34,13 @@ public class UserState: MonoBehaviour {
 		InvokeRepeating("DoUpdate", 1, 1);
 	}
 
-
-
 	void Update(){
 		_playersLeft = playersLeft;
 	}
 
 	void DoUpdate(){
 		if(!proxy.IsMine) return;
+		UpdateUI();
 		if(winner!=null) return;
 		switch(state){
 			case State.ENTERING:
@@ -65,6 +65,19 @@ public class UserState: MonoBehaviour {
 				break;
 		}
 		//GetComponentInChildren<Billboard>().Display(state.ToString());
+	}
+
+	void UpdateUI(){
+		var ui = this.Find<Text>("Match Status Text");
+		string n;
+		var p = playersLeft;
+		if(p==0){
+			n = string.Format("Awaiting {0} more user(s) for match",
+			                  minUsersToMatch-idleUsers);
+		}else{
+			n = string.Format("Playing: {0}, Recycling: {1}, Watching: {2}",
+			                  p, ghosts, spectators);
+		} ui.text = n;
 	}
 
 	void EndMatch(){ RPC("EnterIdle"); }
@@ -111,6 +124,18 @@ public class UserState: MonoBehaviour {
 	int playersLeft{ get{
 		int n=0;
 		foreach(var x in all){ if(x.state==State.MATCHING) n++; }
+		return n;
+	}}
+
+	int ghosts{ get{
+		int n=0;
+		foreach(var x in all){ if(x.state==State.GHOST) n++; }
+		return n;
+	}}
+
+	int spectators{ get{
+		int n=0;
+		foreach(var x in all){ if(x.state==State.SPECTATE) n++; }
 		return n;
 	}}
 

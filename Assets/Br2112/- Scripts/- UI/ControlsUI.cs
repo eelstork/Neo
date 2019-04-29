@@ -6,8 +6,8 @@ public class ControlsUI : MonoBehaviour {
     public float D = 2;
 
 	string[] controls = {
-        "OPERATION - [move/sneak forward/back] [look left/right/up/down] " +
-        "[strafe left/right] [nudge N/-N] [jump/dig] [shoot] [respawn] [stabilizer on/off]"
+        "OPERATION: move/sneak forward/back | look left/right/up/down",
+        "strafe left/right | nudge N/-N | jump/dig | shoot | teleport | stabilizer on/off"
 	};
 
     string[] puns = {
@@ -41,10 +41,12 @@ public class ControlsUI : MonoBehaviour {
                 M("CODE Z: You are toast. recycling in progress, please wait");
                 break;
         }
-        Invoke("ControlsUpdate", D);
+        Invoke("ControlsUpdate0", D);
     }
 
-    void ControlsUpdate(){ M(controls[0]); Invoke("Joke", D); }
+    void ControlsUpdate0(){ M(controls[0]); Invoke("ControlsUpdate1", D*2); }
+
+    void ControlsUpdate1(){ M(controls[1]); Invoke("Joke", D*2); }
 
     void Joke(){
         M(puns[Random.Range(0, puns.Length)]);
