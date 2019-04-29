@@ -16,10 +16,6 @@ public class HP : MonoBehaviour {
 	public void Div(int n)  { value /= n;    }
 	public void Grant(int n){ value += n; if(value>MAX) value=MAX; }
 
-	void Update(){
-		if(value<=0)this.Get<UserState>().RPC("Lose");
-	}
-
 	void OnCollisionEnter(Collision c){
 		if(!PhotonView.Get(this).IsMine) return;
 		var reason = c.collider.gameObject.name;

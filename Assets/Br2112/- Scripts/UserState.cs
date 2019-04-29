@@ -121,7 +121,7 @@ public class UserState: MonoBehaviour {
 
 	int         userCount { get{ return all.Length;     				}}
 	bool        matchOver { get{ return playersLeft==0; 				}}
-	bool        KO        { get{ return false;          				}}
+	bool        KO        { get{ return this.Get<HP>().value<=0;        }}
 
 	PhotonView  proxy     { get{ return PhotonView.Get(this); 	 		}}
 	UserState[] all       { get{ return FindObjectsOfType<UserState>(); }}
