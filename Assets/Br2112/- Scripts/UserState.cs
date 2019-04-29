@@ -66,18 +66,33 @@ public class UserState: MonoBehaviour {
 
 	// ------------------------------------------------------------------------
 
-	[RPC] void EnterSpectate(){ state = State.SPECTATE; }
+	[RPC] void EnterSpectate(){
+		state = State.SPECTATE;
+		steer.enabled = true;
+		stabilizer.enabled = false;
+	}
 
 	[RPC] void EnterMatch(){
 		state = State.MATCHING;
+		steer.enabled = false;
+		stabilizer.enabled = true;
 		this.Get<HP>().Reset();
 		Camera.main.gameObject.AddComponent<FogSplash>();
 		this.transform.position = Arena.GenPos();
 	}
 
-	[RPC] void EnterIdle(){ state = State.IDLE; }
+	[RPC] void EnterIdle(){
+		steer.enabled = true;
+		stabilizer.enabled = false;
+		state = State.IDLE;
+	}
 
-	[RPC] void Lose(){ state = State.GHOST; this.Get<HP>().Reset(); }
+	[RPC] void Lose(){
+		stabilizer.enabled = false;
+		steer.enabled = true;
+		state = State.GHOST;
+		this.Get<HP>().Reset();
+	}
 
 	[RPC] void Win(string name) {
 		playerName = name;
@@ -101,8 +116,11 @@ public class UserState: MonoBehaviour {
 	int         userCount { get{ return all.Length;     				}}
 	bool        matchOver { get{ return playersLeft==0; 				}}
 	bool        KO        { get{ return false;          				}}
+
 	PhotonView  proxy     { get{ return PhotonView.Get(this); 	 		}}
 	UserState[] all       { get{ return FindObjectsOfType<UserState>(); }}
+	A1.Steer steer        { get{ return this.Get<A1.Steer>(); }}
+	Stabilizer stabilizer { get{ return this.Get<Stabilizer>(); }}
 
 	public static string winner{get{
 			var players = FindObjectsOfType<UserState>();
