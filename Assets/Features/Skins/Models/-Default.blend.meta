@@ -1,0 +1,194 @@
+fileFormatVersion: 2
+guid: bf4db01e4915f4908963269712509361
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Armor
+    100004: Brain
+    100006: Cube_002
+    100008: Cylinder
+    100010: Cylinder_001
+    100012: Display
+    100014: Frame
+    100016: Gun
+    400000: //RootNode
+    400002: Armor
+    400004: Brain
+    400006: Cube_002
+    400008: Cylinder
+    400010: Cylinder_001
+    400012: Display
+    400014: Frame
+    400016: Gun
+    2100000: Yellow
+    2100002: Armor
+    2100004: Metal
+    2100006: Lens
+    2100008: LCD
+    2100010: unnamed
+    2100012: Dark_metal
+    2100014: Gray_matter
+    2100016: Eye
+    2100018: Iris
+    2300000: //RootNode
+    2300002: Armor
+    2300004: Brain
+    2300006: Cube_002
+    2300008: Cylinder
+    2300010: Cylinder_001
+    2300012: Display
+    2300014: Frame
+    2300016: Gun
+    3300000: //RootNode
+    3300002: Armor
+    3300004: Brain
+    3300006: Cube_002
+    3300008: Cylinder
+    3300010: Cylinder_001
+    3300012: Display
+    3300014: Frame
+    3300016: Gun
+    4300000: Cube
+    4300002: Armor
+    4300004: Display
+    4300006: Cylinder_001
+    4300008: Cylinder
+    4300010: Cube_002
+    4300012: Gun
+    4300014: Brain
+    4300016: Frame
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Armor
+    second: {fileID: 2100000, guid: 8735ccf3b2b874115b9f23a49d0e0863, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark_metal
+    second: {fileID: 2100000, guid: 1511e368bf6c7475ca967e70ce04c2aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eye
+    second: {fileID: 2100000, guid: 101bd5000b68c41a19b1e06e17918791, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gray_matter
+    second: {fileID: 2100000, guid: 596b79eb1aec5447396b6bf261013972, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iris
+    second: {fileID: 2100000, guid: e305730c726b64419b31ce3defa885aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LCD
+    second: {fileID: 2100000, guid: 6f3f0e93d9db84ef8a21de0710f38104, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lens
+    second: {fileID: 2100000, guid: e305730c726b64419b31ce3defa885aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: cc263afff0a27414c9584be587830043, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow
+    second: {fileID: 2100000, guid: 66636b7baca9e4fe0ada9823a2a1f66e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: unnamed
+    second: {fileID: 2100000, guid: 2126fdda7096943fcb8d53a2402220cc, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
