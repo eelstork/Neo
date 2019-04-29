@@ -17,6 +17,7 @@ public class TBC : MonoBehaviour {
 		if(cmd=="sneak") return Sneak(words[1]);
 		if(cmd=="strafe") return Strafe(words[1]);
 		if(cmd=="rotate") return Rotate(words[1]);
+		if(cmd=="look") return Rotate(words[1]);
 		if(cmd=="nudge") return Nudge(words[1]);
 		if(cmd=="shoot") return Shoot();
 		if(cmd=="jump") return Jump();
@@ -47,6 +48,8 @@ public class TBC : MonoBehaviour {
 		print("Rotate");
 		if(x=="left") precise.Rotate(-T.right);
 		if(x=="right") precise.Rotate(T.right);
+		if(x=="down") precise.Rotate(-T.up);
+		if(x=="up") precise.Rotate(T.up);
 		Cost(1);
 		return true;
 	}

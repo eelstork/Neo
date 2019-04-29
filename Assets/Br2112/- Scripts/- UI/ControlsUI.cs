@@ -6,8 +6,8 @@ public class ControlsUI : MonoBehaviour {
     public float D = 2;
 
 	string[] controls = {
-        "OPERATION - [move/sneak forward/back] [rotate/strafe left/right] "+
-        "[nudge N/-N] [jump/dig] [shoot] [respawn]"
+        "OPERATION - [move/sneak forward/back] [look left/right/up/down] " +
+        "[strafe left/right] [nudge N/-N] [jump/dig] [shoot] [respawn] [stabilizer on/off]"
 	};
 
     string[] puns = {

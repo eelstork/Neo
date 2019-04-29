@@ -68,13 +68,12 @@ public class UserState: MonoBehaviour {
 
 	[RPC] void EnterSpectate(){
 		state = State.SPECTATE;
-		steer.enabled = true;
-		stabilizer.enabled = false;
+		Steer(true, "Start spectating");
 	}
 
 	[RPC] void EnterMatch(){
 		state = State.MATCHING;
-		steer.enabled = false;
+		Steer(false, "Enter match");
 		if(stabilizer)stabilizer.enabled = true;
 		this.Get<HP>().Reset();
 		if(proxy.IsMine) Camera.main.gameObject.AddComponent<FogSplash>();
@@ -82,21 +81,24 @@ public class UserState: MonoBehaviour {
 	}
 
 	[RPC] void EnterIdle(){
-		steer.enabled = true;
-		stabilizer.enabled = false;
+		Steer(true, "Enter idle mode");
 		state = State.IDLE;
 	}
 
 	[RPC] void Lose(){
-		stabilizer.enabled = false;
-		steer.enabled = true;
+		Steer(true, "Enter ghost mode");
 		state = State.GHOST;
-		this.Get<HP>().Reset();
 	}
 
 	[RPC] void Win(string name) {
 		playerName = name;
 		state = State.WIN; Invoke("EndMatch", 3);
+	}
+
+	void Steer(bool flag, string reason){
+		print("Enable steer: "+flag+" - "+reason);
+		steer.enabled = flag;
+		stabilizer.enabled = !flag;
 	}
 
 	// ------------------------------------------------------------------------

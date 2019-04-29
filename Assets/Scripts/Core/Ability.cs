@@ -20,9 +20,9 @@ namespace A1 { public class Ability : MonoBehaviour {
 	public bool pauseWhenDone = false;
 
 	public static void StopAll(Component c){
-		foreach(var ability in c.GetComponents<Ability>()){
-			ability.enabled = false;
-		}
+		//foreach(var ability in c.GetComponents<Ability>()){
+			//ability.enabled = false;
+		//}
 		var motor = c.GetComponent<MotorSystem>();
 		if(motor) motor.Stop();
 		var status = c.GetComponent<AgentStatus>();
