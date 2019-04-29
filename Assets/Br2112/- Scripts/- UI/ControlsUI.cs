@@ -7,7 +7,8 @@ public class ControlsUI : MonoBehaviour {
 
 	string[] controls = {
         "OPERATION: move/sneak forward/back | look left/right/up/down",
-        "strafe left/right | nudge N/-N | jump/dig | shoot | teleport | stabilizer on/off"
+        "strafe left/right | nudge N/-N | jump/dig | shoot | teleport ",
+        "cam left/right/up/down | zoom N.N | stabilizer on/off"
 	};
 
     string[] puns = {
@@ -46,7 +47,9 @@ public class ControlsUI : MonoBehaviour {
 
     void ControlsUpdate0(){ M(controls[0]); Invoke("ControlsUpdate1", D*2); }
 
-    void ControlsUpdate1(){ M(controls[1]); Invoke("Joke", D*2); }
+    void ControlsUpdate1(){ M(controls[1]); Invoke("ControlsUpdate2", D*2); }
+
+    void ControlsUpdate2(){ M(controls[2]); Invoke("Joke", D*2); }
 
     void Joke(){
         M(puns[Random.Range(0, puns.Length)]);
