@@ -1542,7 +1542,7 @@ Prefab:
     - target: {fileID: 224218068049856776, guid: d6781fdfcbbba43ce9b47b29f084e3fb,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 224218068049856776, guid: d6781fdfcbbba43ce9b47b29f084e3fb,
         type: 2}
@@ -2410,6 +2410,23 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &1917829566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1563264426344026, guid: d6781fdfcbbba43ce9b47b29f084e3fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 164280471}
+--- !u!114 &1917829570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1917829566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9482fb4ccac404970894b66353e56691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  D: 2
 --- !u!1 &2000715416
 GameObject:
   m_ObjectHideFlags: 0

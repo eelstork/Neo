@@ -12,7 +12,7 @@ public class MatchUI : MonoBehaviour {
 			ui.SetActive(false);
 		}else{
 			ui.SetActive(true);
-			text.text = "Winner: "+s;
+			text.text = s + "is POPULATION ONE";
 		}
 	}
 

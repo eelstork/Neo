@@ -71,6 +71,7 @@ public class UserState: MonoBehaviour {
 	[RPC] void EnterMatch(){
 		state = State.MATCHING;
 		this.Get<HP>().Reset();
+		Camera.main.gameObject.AddComponent<FogSplash>();
 		this.transform.position = Arena.GenPos();
 	}
 
