@@ -23,10 +23,11 @@ public class ChatInput : MonoBehaviour{
 	void OnSubmit(){
 		var str = field.text.Trim();
 		if (str.Length > 0 && Connection.localPlayer) {
-			if(str.StartsWith("@")){
-	            var skin = str.Substring(1);
-	            GameObject.FindObjectOfType<SkinLoader>().ApplySkin(skin);
-	        }else{
+			// if(str.StartsWith("@")){
+	        //    var skin = str.Substring(1);
+	        //    GameObject.FindObjectOfType<SkinLoader>().ApplySkin(skin);
+	        //}
+			//else{
 				bool accepted = false;
 				try{
 					accepted =
@@ -38,8 +39,10 @@ public class ChatInput : MonoBehaviour{
 				if(!accepted){
 					Connection.localPlayer.transform.Req<A1.Tell>().Invoke(
 					UserName.name, str);
+					Connection.localPlayer
+							  .transform.Req<ChatFilter>().Process(str);
 				}
-			}
+			//}
 		}
 
 		field.text = "";

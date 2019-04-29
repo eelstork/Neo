@@ -5,11 +5,16 @@ using Photon.Pun;
 
 public class HP : MonoBehaviour {
 
-	public int value = 100;
+	const  int DEFAULT = 100;
+	const  int MAX     = 500;
+	public int value   = 100;
 
-	public void Reset(){ value = 100; }
-	public void Pay(int x){ value -= x;}
-	public void Div(int n){ value/=n; }
+	void Awake(){ value = DEFAULT; }
+
+	public void Reset()     { value =  DEFAULT; }
+	public void Pay(int x)  { value -= x;  }
+	public void Div(int n)  { value /= n;    }
+	public void Grant(int n){ value += n; if(value>MAX) value=MAX; }
 
 	void Update(){
 		if(value<=0)this.Get<UserState>().RPC("Lose");
