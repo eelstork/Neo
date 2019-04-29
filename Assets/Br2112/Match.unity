@@ -1120,8 +1120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   angle: 15
-  distance: 20
-  height: 0
+  distance: 15
+  height: 2.5
 --- !u!114 &544020280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1985,7 +1985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1423645238
 MonoBehaviour:
   m_ObjectHideFlags: 0

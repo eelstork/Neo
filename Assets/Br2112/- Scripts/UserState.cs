@@ -15,9 +15,13 @@ public class UserState: MonoBehaviour {
 
 	// ------------------------------------------------------------------------
 
-	public void RPC(string msg){ proxy.RPC(msg, RpcTarget.All); }
+	public void RPC(string msg){
+		Debug.Log("Send no-arg RPC: "+msg);
+		proxy.RPC(msg, RpcTarget.All);
+	}
 
 	public void RPC(string msg, string str){
+		Debug.Log("Send 1-arg RPC: "+msg+", "+str);
 		proxy.RPC(msg, RpcTarget.All, str);
 	}
 
