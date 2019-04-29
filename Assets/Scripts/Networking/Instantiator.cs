@@ -42,8 +42,7 @@ public class Instantiator : MonoBehaviour {
 	}
 
 	Vector3 spawn{ get{
-		var O = Random.insideUnitCircle;
-		return new Vector3(O.x*radius, height, O.y*radius);
+		return Arena.GenPos();
 	}}
 
 }

@@ -8,6 +8,8 @@ public class HP : MonoBehaviour {
 	public int value = 100;
 
 	public void Reset(){ value = 100; }
+	public void Pay(int x){ value -= x;}
+	public void Div(int n){ value/=n; }
 
 	void Update(){
 		if(value<=0)this.Get<UserState>().RPC("Lose");

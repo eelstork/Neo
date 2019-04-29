@@ -150,6 +150,8 @@ GameObject:
   - component: {fileID: 114650418772422646}
   - component: {fileID: 114390786589502402}
   - component: {fileID: 114368208680005612}
+  - component: {fileID: 114541167247281130}
+  - component: {fileID: 114673089149216042}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -324,6 +326,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllers:
   - {fileID: 114802990367610152}
+  - {fileID: 114541167247281130}
+  - {fileID: 114650418772422646}
 --- !u!114 &114170113622815622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -382,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8396226, g: 0.059407253, b: 0.6129446, a: 1}
+  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -414,6 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369737b0226364a5899fa8439a2bf408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnRadius: 20
   minUsersToMatch: 2
   state: 0
   playerName: 
@@ -489,7 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -523,10 +528,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsPerLetter: 0.3
   baseTime: 3
-  minHeight: 1.65
-  maxHeight: 5
+  minHeight: 1
+  maxHeight: 3
   minScale: 0.65
-  maxScale: 2.5
+  maxScale: 2
   deleteAfterWait: 1
   dist: 
 --- !u!114 &114461036541646892
@@ -592,6 +597,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b35f336340834c8c8807bb969620adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114541167247281130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1954538105539504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c10dc7a742304245868dd178b4e86dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scalar: 10
+  strength: 10
+  limit: 45
+  output: 0
 --- !u!114 &114568964189532000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -640,6 +660,18 @@ MonoBehaviour:
   demand: 0
   maxDemand: 0
   planar: 1
+--- !u!114 &114673089149216042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1954538105539504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e57fc94ed03a407294d8f085dec5298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 15
 --- !u!114 &114802990367610152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -702,8 +734,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
   m_SynchronizeAngularVelocity: 1
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 5
 --- !u!114 &114933299307113428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -716,7 +748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.99998784, b: 0.4481132, a: 1}
+  m_Color: {r: 0.8490566, g: 0.1802243, b: 0.42463306, a: 0.50980395}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

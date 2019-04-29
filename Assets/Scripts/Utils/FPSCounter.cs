@@ -12,7 +12,7 @@ public class FPSCounter : MonoBehaviour {
 
 	void Step(){
 		var c = Time.frameCount;
-		this.Get<Text>().text = (c-count).ToString() + " FPS";
+		this.Get<Text>().text = (c-count).ToString();
 		count = c;
 	}
 }

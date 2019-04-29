@@ -7,7 +7,6 @@ public class ThirdPersonCam : MonoBehaviour {
 	public float height = 1.5f;
 	Vector3 origin;
 	Quaternion rotation;
-	bool local = false;
 
 	void Update(){
 		if(!target && Connection.localPlayer){

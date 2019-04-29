@@ -6,7 +6,7 @@ using RPC = Photon.Pun.PunRPC;
 public class UserState: MonoBehaviour {
 
 	public enum State{ ENTERING, SPECTATE, IDLE, MATCHING, WIN, GHOST }
-
+	public float spawnRadius = 20;
 	public int minUsersToMatch = 3;
 	public State state = State.ENTERING;
 	public string playerName;
@@ -28,6 +28,8 @@ public class UserState: MonoBehaviour {
 		else RPC("EnterIdle");
 		InvokeRepeating("DoUpdate", 1, 1);
 	}
+
+
 
 	void Update(){
 		_playersLeft = playersLeft;
@@ -67,7 +69,9 @@ public class UserState: MonoBehaviour {
 	[RPC] void EnterSpectate(){ state = State.SPECTATE; }
 
 	[RPC] void EnterMatch(){
-		state = State.MATCHING; this.Get<HP>().Reset();
+		state = State.MATCHING;
+		this.Get<HP>().Reset();
+		this.transform.position = Arena.GenPos();
 	}
 
 	[RPC] void EnterIdle(){ state = State.IDLE; }

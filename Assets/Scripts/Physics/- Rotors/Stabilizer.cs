@@ -6,12 +6,15 @@ public class Stabilizer : MonoBehaviour {
 
 	public float scalar = 500;
 	public float strength = 20;
+	public float limit = 45;
 	[Header("Debug")]
 	public float output;
 
 	void FixedUpdate(){
 		var u = up;
-		Debug.DrawRay(transform.position, u, Color.cyan);
+		var angle = Vector3.Angle(u, transform.up);
+		if(angle<limit) return;
+		//Debug.DrawRay(transform.position, u, Color.cyan);
 		var Δ = Vector3.Cross(transform.up, u);
 		var F = Δ*scalar;
 		if(F.magnitude>strength) F*=strength/F.magnitude;
@@ -20,10 +23,7 @@ public class Stabilizer : MonoBehaviour {
 	}
 
 	Vector3 up{ get{
-		var P = transform.position + Vector3.up * metric;
-		RaycastHit hit;
-		bool didHit = Physics.Raycast(P, Vector3.down, out hit, metric * 5);
-		return didHit ? hit.normal : Vector3.up;
+		return Vector3.up;
 	}}
 
 	float metric{ get{ return collider.bounds.size.y; }}
