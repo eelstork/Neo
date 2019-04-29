@@ -11,10 +11,16 @@ public class HP : MonoBehaviour {
 
 	void Awake(){ value = DEFAULT; }
 
-	public void Reset()     { value =  DEFAULT; }
-	public void Pay(int x)  { value -= x;  }
-	public void Div(int n)  { value /= n;    }
-	public void Grant(int n){ value += n; if(value>MAX) value=MAX; }
+	public void Reset()     { value =  DEFAULT; Upd(); }
+	public void Pay(int x)  { value -= x; Upd();  }
+	public void Div(int n)  { value /= n; Upd();    }
+	public void Grant(int n){ value += n; if(value>MAX) value=MAX; Upd(); }
+
+	void Upd(){
+		float s = value*0.01f;
+		if(s<0.6f) s=0.6f;
+		transform.localScale = Vector3.one*s;
+	}
 
 	void OnCollisionEnter(Collision c){
 		if(!PhotonView.Get(this).IsMine) return;
