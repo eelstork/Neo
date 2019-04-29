@@ -19,6 +19,7 @@ public class TBC : MonoBehaviour {
 		if(cmd=="rotate") return Rotate(words[1]);
 		if(cmd=="look") return Rotate(words[1]);
 		if(cmd=="nudge") return Nudge(words[1]);
+		if(cmd=="retire") return Retire();
 		if(cmd=="shoot") return Shoot();
 		if(cmd=="jump") return Jump();
 		if(cmd=="dig") return Dig();
@@ -58,7 +59,7 @@ public class TBC : MonoBehaviour {
 		print("Nudge");
 		var angle = int.Parse(x);
 		precise.RotateByAngle(angle);
-		Cost(angle);
+		Cost(angle/2);
 		return true;
 	}
 
@@ -78,6 +79,10 @@ public class TBC : MonoBehaviour {
 		if(x=="off") s.enabled = false;
 		Cost(1);
 		return true;
+	}
+
+	bool Retire(){
+		print("Retire"); Cost(500); return true;
 	}
 
 	bool Jump(){

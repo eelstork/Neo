@@ -654,9 +654,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
   speed: 10
-  traction: 4
-  strength: 20
-  minOutput: 1
+  traction: 20
+  strength: 50
+  minOutput: 2
   demand: 0
   maxDemand: 0
   planar: 0

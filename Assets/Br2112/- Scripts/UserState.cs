@@ -53,8 +53,9 @@ public class UserState: MonoBehaviour {
 				break;
 			case State.MATCHING:
 				if(idleUsers>0) return;
-				if(KO)  RPC("Lose");
-				if(playersLeft==1) {
+				if(KO) RPC("Lose");
+				//if(playersLeft==1) {
+				if(playersLeft==1 && !KO) {
 					print("I am the winner");
 					RPC("Win", UserName.value);
 				}
