@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Rotor : Governor, IRotor {
 
+	public float threshold = 1;
+	public bool sticky = false;
 	public bool planar = true;
 
 	void IRotor.Target(Vector3 p){ target = p; enabled = true; }
@@ -14,10 +16,14 @@ public class Rotor : Governor, IRotor {
 	}
 
 	void FixedUpdate(){
-		var Δ = Vector3.Cross(T.forward, targetDirection)*speed
-		        - body.angularVelocity;
-	    // TODO: multiply by Δt is wrong here.
-		body.AddTorque(Clamp(Δ)*body.mass*traction);
+		var α = Vector3.Angle(T.forward, targetDirection);
+		if(α<threshold){
+			if(!sticky) enabled = false;
+		}else{
+			var Δ = Vector3.Cross(T.forward, targetDirection)*speed
+		        	- body.angularVelocity;
+			body.AddTorque(Clamp(Δ)*body.mass*traction);
+		}
 	}
 
 	Vector3 targetDirection{
