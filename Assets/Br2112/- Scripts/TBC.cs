@@ -60,8 +60,8 @@ public class TBC : MonoBehaviour {
 	bool Nudge(string x){
 		print("Nudge");
 		var angle = int.Parse(x);
-		precise.RotateByAngle(angle);
-		Cost(angle/2);
+		precise.RotateByAngle(angle*3);
+		Cost(Mathf.Abs(angle)/4);
 		return true;
 	}
 

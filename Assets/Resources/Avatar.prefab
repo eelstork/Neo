@@ -1053,13 +1053,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  speed: 10
-  traction: 20
+  speed: 5
+  traction: 10
   strength: 50
   minOutput: 2
   demand: 0
   maxDemand: 0
+  threshold: 3
+  sticky: 0
   planar: 0
+  nearAngle: 25
 --- !u!114 &114673089149216042
 MonoBehaviour:
   m_ObjectHideFlags: 1

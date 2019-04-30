@@ -5,12 +5,13 @@ public class Rotor : Governor, IRotor {
 	public float threshold = 1;
 	public bool sticky = false;
 	public bool planar = true;
+	public float nearAngle = 10;
 
 	void IRotor.Target(Vector3 p){ target = p; enabled = true; }
 	void IRotor.Stop(){ enabled = false; }
 
 	void Awake(){
-		if(speed==0)    speed    = 10;
+		if(speed==0)    speed    = 10; // probably radians
 		if(traction==0) traction = 20;
 		if(strength==0) strength = 50;
 	}
@@ -20,7 +21,8 @@ public class Rotor : Governor, IRotor {
 		if(α<threshold){
 			if(!sticky) enabled = false;
 		}else{
-			var Δ = Vector3.Cross(T.forward, targetDirection)*speed
+			var s = α>nearAngle ? speed : α/nearAngle;
+			var Δ = Vector3.Cross(T.forward, targetDirection)*s
 		        	- body.angularVelocity;
 			body.AddTorque(Clamp(Δ)*body.mass*traction);
 		}

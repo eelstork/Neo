@@ -18,7 +18,7 @@ public class HP : MonoBehaviour {
 
 	void Upd(){
 		float s = value*0.01f;
-		if(s<0.6f) s=0.6f;
+		if(s<0.8f) s=0.8f;
 		transform.localScale = Vector3.one*s;
 	}
 
